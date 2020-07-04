@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html ng-app="demoApp">
+<head>
+	<title></title>
+	<meta charset="utf-8" />
+	<script src="Scripts/angular.js"></script>
+	<script src="Scripts/demoAppScripts.js"></script>
+</head>
+<body ng-controller="demoCntrl">
+	<p>
+		<label>Employee ID : <input type="text" ng-model="empId" /></label>
+		<button ng-click="searchEmployee()">Search</button>
+	</p>
+	<p>
+		<label>Search Any : <input type="text" ng-model="searchText.$" /></label>
+	</p>
+	<p>
+		<label>Search By ID : <input type="text" ng-model="searchText.Id" /></label>
+	</p>
+	<p>
+		<label>Search By Name : <input type="text" ng-model="searchText.Name" /></label>
+	</p>
+	<p>
+		<label>Search By Location : <input type="text" ng-model="searchText.Location" /></label>
+	</p>
+	<p>
+		<label>Search By Salary : <input type="text" ng-model="searchText.Salary" /></label>
+	</p>
+	<h2>Employee List...</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Location</th>
+				<th>Salary</th>
+				<th>Is Contract</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!--<tr ng-repeat="emp in employeeList|filter:searchText|orderBy:'Salary'">-->
+			<tr ng-repeat="emp in employeeList|filter:searchText">
+				<td>{{emp.Id}}</td>
+				<td>{{emp.Name|uppercase}}</td>
+				<!--<td>{{emp.Location}}</td>-->
+				<td>{{emp.Location|lowercase}}</td>
+				<!--<td>{{emp.Salary}}</td>-->
+				<!--<td>{{emp.Salary|currency}}</td>-->               
+				<td>{{emp.Salary|currency:'₹'}}</td>
+				<td>{{emp.IsContract|YesNo:emp.Salary:emp.Name}}</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
